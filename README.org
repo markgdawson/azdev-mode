@@ -1,0 +1,99 @@
+* Setup Instructions
+Set the teams that you wish to appear in the `team order` vector:
+#+BEGIN_SRC emacs-lisp
+(setq team-order
+      (vector
+       "Maxeler"
+       "HiRep"
+       "Covid-Wales"
+       "SOMBRERO"
+       "Excalibur Meshing"
+       "Cogs" ))
+#+END_SRC
+
+You can set translations for the long names, to show
+abbreviations, consistent naming or to use initials.
+#+BEGIN_SRC emacs-lisp
+  (setq azdev/user-aliases
+        '("Mark Dawson" "Mark"
+          "Bob Long-Double-Barrelled-Name" "Bob"))
+#+END_SRC
+
+Download the source, for example:
+#+BEGIN_SRC sh
+git clone github.com/markgdawson/azdev-mode.el ~/azdev
+#+END_SRC
+
+And then load from emacs with
+#+BEGIN_SRC emacs-lisp
+(load "~/azdev-mode.el/devops-client.el")
+#+END_SRC
+
+A typical emacs config, with no username translation, might look like:
+#+BEGIN_SRC emacs-lisp
+  (setq team-order
+        (vector
+         "Maxeler"
+         "HiRep"
+         "Covid-Wales"
+         "SOMBRERO"
+         "Excalibur Meshing"
+         "Cogs" ))
+
+  (load "~/azdev-mode.el/devops-client.el")
+#+END_SRC
+
+Start the mode with `M-x azdev` or by calling `(azdev)`.
+
+* Mode actions
+The following actions operate on the item under point in the azdev buffer. 
+** Data Sync
+ This will download all current data from Azure Devops.
+
+ Once the data is downloaded, `M-x azdev/draw` will redraw the buffer using current data. Note that azdev makes not support a partial sync/merge/update of remote changes. It fetches all or nothing.
+
+ It does however update the local workitem database when local update functions are called. For example, changing the work item title through `azdev` will both update the remote server, and update the local data store.
+
+** Movement
+ Azdev has slightly enhanced movement by work item, bound (in `azdev-mode` to:
+
+ | Key | Action             | Interactive Function (M-x) |
+ |-----+--------------------+------------------|
+ | C-n | Next work item     | azdev/next-entry |
+ | C-p | Previous work item | azdev/prev-entry |
+ | M-n | Next team          | azdev/next-team |
+ | M-p | Previous work item | azdev/prev-team |
+
+** Changing States
+ The keybindings for changing the state of an item are under the
+ `C-c e` prefix.
+
+ These are:
+
+ | Key | Action        | Interactive Function (M-x)           |
+ |-----+---------------+--------------------------------------|
+ | a   | Set as Active | azdev/set-current-item-state--active |
+ | n   | Set as New    | azdev/set-current-item-state--new    |
+ | c   | Set as Closed | azdev/set-current-item-state--closed |
+
+ For example, `C-c e a` will set the state of an item to active.
+
+ In addition, the `TAB` key will cycle through states.
+
+ These changes are updated immediately on the remote server.
+
+** Changing item title
+ `C-c e t` or `M-x set-current-item-title` will change the title of an item, updating immediate in the remote.
+
+** Adding removing items
+
+ | Key   | Action                         | Interactive Function (M-x) |
+ |-------+--------------------------------+-------------------|
+ | C-c n | Add new item (choosing parent) | azdev/add-item    |
+ | C-c d | Delete/remove current item     | azdev/remove-item |
+
+** Misc
+
+ | Key     | Action                        | Interactive Function (M-x)   |
+ |---------+-------------------------------+------------------------------|
+ | C-c C-v | View in (default) web browser | azdev/visit-current-item-www |
