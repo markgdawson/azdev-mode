@@ -7,10 +7,13 @@ You can change this in your config with:
 (setq azdev/token-file-path "~/my-token-file")
 #+END_SRC
 
-The token file should contain a base-64 encoded token for access to Azure DevOps servers.
+The token file should contain a base-64 encoded Microsoft Personal Access Token (PAT) for access to Azure DevOps servers.
 
-Updated instructions on aquiring tokens to follow.
+This PAT is used with Basic Authentication authentication method to access Azure DevOps. Please be aware that the token will be transmitted in header data.
 
+Instructions for getting a PAT token and encoding it in base 64 can be found [[https://docs.microsoft.com/en-gb/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&viewFallbackFrom=vsts&tabs=preview-page#create-personal-access-tokens-to-authenticate-access][here]].
+
+Choose "Custom Defined" as the scope of everything under "Work Items". Keep a copy of the token.
 ** Emacs Config
 Set the teams that you wish to appear in the `team order` vector:
 #+BEGIN_SRC emacs-lisp
