@@ -1,4 +1,17 @@
 * Setup Instructions
+** Axure Devops Token
+The software requires a token, which is store in the file specified by `azdev/token-file-path`. The default value is `"~/.azure-devops-token"`.
+
+You can change this in your config with:
+#+BEGIN_SRC emacs-lisp
+(setq azdev/token-file-path "~/my-token-file")
+#+END_SRC
+
+The token file should contain a base-64 encoded token for access to Azure DevOps servers.
+
+Updated instructions on aquiring tokens to follow.
+
+** Emacs Config
 Set the teams that you wish to appear in the `team order` vector:
 #+BEGIN_SRC emacs-lisp
 (setq team-order
@@ -43,6 +56,7 @@ A typical emacs config, with no username translation, might look like:
   (load "~/azdev-mode.el/devops-client.el")
 #+END_SRC
 
+** Running
 Start the mode with `M-x azdev` or by calling `(azdev)`.
 
 * Mode actions
