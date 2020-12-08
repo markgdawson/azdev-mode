@@ -1,5 +1,5 @@
 * Setup Instructions
-** Axure Devops Token
+** Azure Devops Token
 The software requires a token, which is store in the file specified by `azdev/token-file-path`. The default value is `"~/.azure-devops-token"`.
 
 You can change this in your config with:
