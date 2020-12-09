@@ -24,6 +24,7 @@
 (require 'dash)
 (require 'cl-lib)
 (require 'dom)
+(require 's)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Store abstraction
