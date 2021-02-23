@@ -192,7 +192,7 @@ the work item data, the start position of the column, and the end position.")
 
 (defun default-headers (content-type)
   "Return default headers, for a given CONTENT-TYPE."
-  `(("Authorization" . ,(concat "Basic " azdev/auth-token))
+  `(("Authorization" . ,(concat "Basic " (base64-encode-string (concat ":" azdev/auth-token) 1)))
     ("Content-Type" . ,content-type)))
 
 (azdev/read-token)
